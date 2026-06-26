@@ -120,11 +120,45 @@ T = {
         "weather_thunderstorm_hail": "Thunderstorm with hail",
         "weather_thunderstorm_heavy_hail": "Thunderstorm with heavy hail",
         "voice_script": """
-Welcome to GlobalInternet.py Weather Station. Here is the current weather across Haiti's 10 departments. 
+Welcome to GlobalInternet.py Weather Station. This software detects and broadcasts real-time weather data from the nearest meteorological stations using the Open-Meteo API, providing you with accurate and up-to-date information for all 10 departments of Haiti.
+
+This report was generated on {date} at {time} Haiti Standard Time.
+
 {details}
-Thank you for using GlobalInternet.py Weather Station.
+
+{heat_advice}
+
+{rain_info}
+
+This weather forecast was brought to you by Gesner Deslandes, Engineer-in-Chief at GlobalInternet.py.
+
+We are a Haitian software company committed to providing free, accurate, and life-saving information to our community. If you find this service useful, please support our work through Prisme Transfer or Moncash anywhere around the globe.
+
+Contact us:
+Phone / WhatsApp: (509) 4738-5663
+Email: deslandes78@gmail.com
+
+Your donation helps us continue bringing you more information and better services. Thank you for your support.
 """,
-        "voice_detail": "In {city}, it is currently {temp} degrees Celsius with {desc}. "
+        "voice_detail": "In {city}, {department}, it is currently {temp} degrees Celsius with {desc}. ",
+        "heat_advice": """
+The heat is already very intense across Haiti, especially in Port-au-Prince and the Ouest department. 
+Here is what you can do to protect yourself and your family:
+Stay hydrated – drink plenty of water throughout the day.
+Avoid going outside between 11 AM and 4 PM when the sun is at its strongest.
+Wear light-colored, loose-fitting clothing.
+Use fans or air conditioning if available.
+Never leave children or pets in parked vehicles.
+Check on elderly neighbors and those with health conditions.
+If you must be outdoors, wear a hat and use sunscreen.
+Keep your home cool by closing curtains during the hottest hours.
+Take cool showers to lower your body temperature.
+Eat light meals and avoid heavy, hot foods.
+
+Remember, heat exhaustion and heatstroke are serious. Listen to your body and rest in the shade when needed.
+""",
+        "rain_info": "Based on current data, rain is expected in the following departments: {rain_departments}. If you are in these areas, please carry an umbrella and stay safe.",
+        "no_rain": "No rain is expected in any department at this time."
     },
     "fr": {
         "app_title": "Station Météo GlobalInternet.py",
@@ -198,11 +232,45 @@ Thank you for using GlobalInternet.py Weather Station.
         "weather_thunderstorm_hail": "Orage avec grêle",
         "weather_thunderstorm_heavy_hail": "Orage avec grêle forte",
         "voice_script": """
-Bienvenue à la station météo GlobalInternet.py. Voici la météo actuelle dans les 10 départements d'Haïti. 
+Bienvenue à la station météo GlobalInternet.py. Ce logiciel détecte et diffuse des données météo en temps réel provenant des stations météorologiques les plus proches via l'API Open-Meteo, vous fournissant des informations précises et à jour pour les 10 départements d'Haïti.
+
+Ce rapport a été généré le {date} à {time} heure d'Haïti.
+
 {details}
-Merci d'utiliser la station météo GlobalInternet.py.
+
+{heat_advice}
+
+{rain_info}
+
+Cette prévision météo vous a été présentée par Gesner Deslandes, ingénieur en chef chez GlobalInternet.py.
+
+Nous sommes une entreprise de logiciels haïtienne engagée à fournir des informations gratuites, précises et vitales à notre communauté. Si vous trouvez ce service utile, veuillez soutenir notre travail via Prisme Transfer ou Moncash partout dans le monde.
+
+Contactez-nous :
+Téléphone / WhatsApp : (509) 4738-5663
+Email : deslandes78@gmail.com
+
+Votre don nous aide à continuer de vous apporter plus d'informations et de meilleurs services. Merci pour votre soutien.
 """,
-        "voice_detail": "À {city}, il fait actuellement {temp} degrés Celsius avec {desc}. "
+        "voice_detail": "À {city}, dans le département de {department}, il fait actuellement {temp} degrés Celsius avec {desc}. ",
+        "heat_advice": """
+La chaleur est déjà très intense dans toute la région, surtout à Port-au-Prince et dans le département de l'Ouest.
+Voici ce que vous pouvez faire pour vous protéger, vous et votre famille :
+Buvez beaucoup d'eau tout au long de la journée.
+Évitez de sortir entre 11 heures et 16 heures, lorsque le soleil est le plus fort.
+Portez des vêtements de couleur claire et amples.
+Utilisez des ventilateurs ou la climatisation si disponible.
+Ne laissez jamais les enfants ou les animaux dans des voitures en stationnement.
+Prenez soin des voisins âgés et des personnes souffrant de problèmes de santé.
+Si vous devez être à l'extérieur, portez un chapeau et utilisez de la crème solaire.
+Gardez votre maison fraîche en fermant les rideaux pendant les heures les plus chaudes.
+Prenez des douches fraîches pour abaisser votre température corporelle.
+Mangez des repas légers et évitez les aliments lourds et chauds.
+
+N'oubliez pas que l'épuisement par la chaleur et le coup de chaleur sont graves. Écoutez votre corps et reposez-vous à l'ombre si nécessaire.
+""",
+        "rain_info": "D'après les données actuelles, des pluies sont attendues dans les départements suivants : {rain_departments}. Si vous vous trouvez dans ces zones, munissez-vous d'un parapluie et restez en sécurité.",
+        "no_rain": "Aucune pluie n'est attendue dans aucun département pour le moment."
     },
     "es": {
         "app_title": "Estación Meteorológica GlobalInternet.py",
@@ -276,11 +344,45 @@ Merci d'utiliser la station météo GlobalInternet.py.
         "weather_thunderstorm_hail": "Tormenta con granizo",
         "weather_thunderstorm_heavy_hail": "Tormenta con granizo fuerte",
         "voice_script": """
-Bienvenido a la estación meteorológica de GlobalInternet.py. Aquí está el clima actual en los 10 departamentos de Haití. 
+Bienvenido a la estación meteorológica de GlobalInternet.py. Este software detecta y transmite datos meteorológicos en tiempo real desde las estaciones meteorológicas más cercanas a través de la API Open-Meteo, proporcionándole información precisa y actualizada para los 10 departamentos de Haití.
+
+Este informe fue generado el {date} a las {time} hora de Haití.
+
 {details}
-Gracias por usar la estación meteorológica de GlobalInternet.py.
+
+{heat_advice}
+
+{rain_info}
+
+Este pronóstico del tiempo fue presentado por Gesner Deslandes, ingeniero jefe de GlobalInternet.py.
+
+Somos una empresa de software haitiana comprometida con proporcionar información gratuita, precisa y vital a nuestra comunidad. Si encuentra útil este servicio, apoye nuestro trabajo a través de Prisme Transfer o Moncash en cualquier parte del mundo.
+
+Contáctenos:
+Teléfono / WhatsApp: (509) 4738-5663
+Correo electrónico: deslandes78@gmail.com
+
+Su donación nos ayuda a seguir brindándole más información y mejores servicios. Gracias por su apoyo.
 """,
-        "voice_detail": "En {city}, actualmente hay {temp} grados Celsius con {desc}. "
+        "voice_detail": "En {city}, departamento de {department}, actualmente hay {temp} grados Celsius con {desc}. ",
+        "heat_advice": """
+El calor ya es muy intenso en toda la región, especialmente en Puerto Príncipe y el departamento Oeste.
+Esto es lo que puede hacer para protegerse a usted y a su familia:
+Manténgase hidratado – beba mucha agua durante todo el día.
+Evite salir entre las 11 a.m. y las 4 p.m., cuando el sol es más fuerte.
+Use ropa de colores claros y holgada.
+Use ventiladores o aire acondicionado si está disponible.
+Nunca deje niños o mascotas en vehículos estacionados.
+Cuide a los vecinos mayores y a las personas con problemas de salud.
+Si debe estar al aire libre, use sombrero y protector solar.
+Mantenga su hogar fresco cerrando las cortinas durante las horas más calurosas.
+Tome duchas frías para bajar su temperatura corporal.
+Coma comidas ligeras y evite alimentos pesados y calientes.
+
+Recuerde que el agotamiento por calor y el golpe de calor son graves. Escuche a su cuerpo y descanse a la sombra cuando sea necesario.
+""",
+        "rain_info": "Según los datos actuales, se esperan lluvias en los siguientes departamentos: {rain_departments}. Si se encuentra en estas áreas, lleve un paraguas y manténgase seguro.",
+        "no_rain": "No se esperan lluvias en ningún departamento en este momento."
     },
     "zh": {
         "app_title": "GlobalInternet.py 气象站",
@@ -354,11 +456,45 @@ Gracias por usar la estación meteorológica de GlobalInternet.py.
         "weather_thunderstorm_hail": "雷暴伴冰雹",
         "weather_thunderstorm_heavy_hail": "雷暴伴大冰雹",
         "voice_script": """
-欢迎使用 GlobalInternet.py 气象站。以下是海地 10 个省的当前天气。
+欢迎使用 GlobalInternet.py 气象站。该软件通过 Open-Meteo API 从最近的气象站检测并广播实时天气数据，为您提供海地所有 10 个省的准确和最新信息。
+
+本报告于 {date} {time} 海地时间生成。
+
 {details}
-感谢使用 GlobalInternet.py 气象站。
+
+{heat_advice}
+
+{rain_info}
+
+本次天气预报由 GlobalInternet.py 首席工程师 Gesner Deslandes 为您提供。
+
+我们是一家海地软件公司，致力于为我们的社区提供免费、准确和重要的信息。如果您觉得此服务有用，请通过 Prisme Transfer 或 Moncash 在全球任何地方支持我们的工作。
+
+联系我们：
+电话 / WhatsApp：(509) 4738-5663
+电子邮件：deslandes78@gmail.com
+
+您的捐赠帮助我们继续为您带来更多信息和更好的服务。感谢您的支持。
 """,
-        "voice_detail": "在{city}，当前温度为 {temp} 摄氏度，{desc}。"
+        "voice_detail": "在 {city}，{department}省，当前温度为 {temp} 摄氏度，{desc}。",
+        "heat_advice": """
+海地各地已经非常炎热，尤其是在太子港和西部省。
+以下是保护您和家人的建议：
+多喝水，全天保持水分充足。
+避免在上午 11 点到下午 4 点之间外出，此时阳光最强。
+穿浅色、宽松的衣服。
+如果有风扇或空调，请使用它们。
+切勿将儿童或宠物留在停放的车辆中。
+关照老年邻居和有健康问题的人。
+如果必须外出，请戴帽子并使用防晒霜。
+在一天中最热的时候拉上窗帘，保持室内凉爽。
+洗冷水澡以降低体温。
+吃清淡的食物，避免油腻和热食。
+
+请记住，热衰竭和中暑是严重的健康问题。注意身体信号，必要时在阴凉处休息。
+""",
+        "rain_info": "根据当前数据，以下省份预计有雨：{rain_departments}。如果您在这些地区，请携带雨伞并注意安全。",
+        "no_rain": "目前任何省份都没有降雨预报。"
     }
 }
 
@@ -414,7 +550,6 @@ HAITI_DEPARTMENTS = [
 
 # ========== WEATHER ICON MAPPING ==========
 def get_weather_icon(weather_code):
-    """Map Open-Meteo weather code to emoji"""
     icons = {
         0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
         45: "🌫️", 48: "🌫️",
@@ -427,15 +562,14 @@ def get_weather_icon(weather_code):
     return icons.get(weather_code, "🌤️")
 
 # ========== WEATHER DATA FETCH ==========
-@st.cache_data(ttl=900)  # Cache for 15 minutes
+@st.cache_data(ttl=900)
 def fetch_weather_data():
-    """Fetch weather data for all 10 departments from Open-Meteo"""
     results = []
     haiti_tz = pytz.timezone('America/Port-au-Prince')
     now = datetime.now(haiti_tz)
     
     for dept in HAITI_DEPARTMENTS:
-        url = f"https://api.open-meteo.com/v1/forecast"
+        url = "https://api.open-meteo.com/v1/forecast"
         params = {
             "latitude": dept["lat"],
             "longitude": dept["lon"],
@@ -484,16 +618,23 @@ def fetch_weather_data():
                 "status": "error",
                 "error": str(e)
             })
-        time.sleep(0.2)  # Rate limit protection
+        time.sleep(0.2)
     
     return results, now.strftime("%Y-%m-%d %I:%M:%S %p")
 
 # ========== GENERATE VOICE SCRIPT ==========
 def generate_weather_voice_script(weather_data):
-    """Generate a voice script summarizing the weather in the current language"""
+    """Generate a full voice script with heat advice, rain predictions, and donation call"""
     if not weather_data:
         return t("voice_waiting")
     
+    # Get current date and time in Haiti timezone
+    haiti_tz = pytz.timezone('America/Port-au-Prince')
+    now = datetime.now(haiti_tz)
+    date_str = now.strftime("%B %d, %Y")
+    time_str = now.strftime("%I:%M:%S %p")
+    
+    # Build details
     detail_template = t("voice_detail")
     details = ""
     for dept in weather_data:
@@ -502,10 +643,37 @@ def generate_weather_voice_script(weather_data):
             code = dept.get("weather_code", 0)
             desc = get_weather_description_translated(code)
             city = dept.get("city", "")
-            details += detail_template.format(city=city, temp=temp, desc=desc)
+            department = dept.get("department", "")
+            details += detail_template.format(city=city, department=department, temp=temp, desc=desc)
     
+    # Heat advice (always included)
+    heat_advice = t("heat_advice")
+    
+    # Rain prediction - check which departments have precipitation > 0 or rain codes
+    rain_departments = []
+    rain_codes = [51, 53, 55, 61, 63, 65, 80, 81, 82, 95, 96, 99]
+    for dept in weather_data:
+        if dept.get("status") == "success":
+            precip = dept.get("precipitation", 0)
+            code = dept.get("weather_code", 0)
+            if precip > 0 or code in rain_codes:
+                rain_departments.append(dept.get("department", ""))
+    
+    if rain_departments:
+        rain_info = t("rain_info").format(rain_departments=", ".join(rain_departments))
+    else:
+        rain_info = t("no_rain")
+    
+    # Build full script
     script_template = t("voice_script")
-    return script_template.format(details=details)
+    script = script_template.format(
+        date=date_str,
+        time=time_str,
+        details=details,
+        heat_advice=heat_advice,
+        rain_info=rain_info
+    )
+    return script
 
 # ========== CUSTOM CSS ==========
 st.markdown("""
@@ -703,6 +871,25 @@ st.markdown("""
         font-size: 0.9rem;
         margin-top: 0;
     }
+    .live-clock {
+        text-align: center;
+        padding: 12px;
+        background: rgba(0, 212, 255, 0.05);
+        border: 1px solid #00d4ff;
+        border-radius: 12px;
+        margin: 10px 0;
+        font-family: monospace;
+        font-size: 1.2rem;
+    }
+    .live-clock .date {
+        color: #8899bb;
+        font-size: 0.9rem;
+    }
+    .live-clock .time {
+        color: #00d4ff;
+        font-size: 2rem;
+        font-weight: bold;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -715,6 +902,28 @@ if 'last_update' not in st.session_state:
     st.session_state.last_update = None
 if 'api_status' not in st.session_state:
     st.session_state.api_status = "Initializing"
+
+# ========== LIVE CLOCK HTML ==========
+def get_live_clock_html():
+    return """
+    <div class="live-clock">
+        <div class="date" id="liveDate">Loading...</div>
+        <div class="time" id="liveTime">--:--:--</div>
+        <div style="color:#667799; font-size:0.7rem;">Haiti Standard Time</div>
+    </div>
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var options = { timeZone: 'America/Port-au-Prince', year: 'numeric', month: 'long', day: 'numeric' };
+            var dateStr = now.toLocaleDateString('en-US', options);
+            var timeStr = now.toLocaleTimeString('en-US', { timeZone: 'America/Port-au-Prince', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('liveDate').textContent = dateStr;
+            document.getElementById('liveTime').textContent = timeStr;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+    """
 
 # ========== HEADER ==========
 st.markdown(f"""
@@ -738,6 +947,11 @@ with st.sidebar:
     if selected_lang != st.session_state.lang:
         st.session_state.lang = selected_lang
         st.rerun()
+    
+    st.markdown("---")
+    
+    # Live Clock in Sidebar
+    st.components.v1.html(get_live_clock_html(), height=130)
     
     st.markdown("---")
     
@@ -825,10 +1039,12 @@ if st.session_state.weather_data is None:
 
 weather_data = st.session_state.weather_data
 
+# ========== LIVE CLOCK IN MAIN AREA ==========
+st.components.v1.html(get_live_clock_html(), height=130)
+
 # ========== SUMMARY SECTION ==========
 if weather_data:
     success_count = sum(1 for d in weather_data if d.get("status") == "success")
-    error_count = len(weather_data) - success_count
     
     col_summary1, col_summary2, col_summary3 = st.columns(3)
     with col_summary1:
@@ -862,7 +1078,7 @@ if weather_data:
     
     st.markdown("---")
 
-# ========== WEATHER CARDS – 2 COLUMNS ==========
+# ========== WEATHER CARDS ==========
 st.markdown(f"### 📍 {t('weather_title')}")
 
 for i in range(0, len(weather_data), 2):
@@ -886,9 +1102,13 @@ for i in range(0, len(weather_data), 2):
                     city = dept.get("city", "")
                     dept_name = dept.get("department", "")
                     
+                    # Highlight Port-au-Prince with special styling
+                    is_pap = "Port-au-Prince" in city
+                    border_style = "border-color: #ff6b35; border-width: 2px;" if is_pap else ""
+                    
                     st.markdown(f"""
-                    <div class="weather-card">
-                        <div class="city">{city}</div>
+                    <div class="weather-card" style="{border_style}">
+                        <div class="city">{city} { '🔥' if is_pap else '' }</div>
                         <div class="dept">{dept_name}</div>
                         <div class="weather-icon">{icon}</div>
                         <div class="temp">{temp}°C</div>
