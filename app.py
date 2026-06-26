@@ -221,6 +221,29 @@ st.markdown("""
         margin: 10px 0;
         color: #ffffff;
     }
+    /* Profile image styling */
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #00d4ff;
+        display: block;
+        margin: 0 auto 8px auto;
+    }
+    .profile-name {
+        color: #ffffff;
+        text-align: center;
+        margin-top: 8px;
+        margin-bottom: 0;
+        font-size: 1.2rem;
+    }
+    .profile-title {
+        color: #8899bb;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 0;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -364,6 +387,18 @@ st.markdown("""
 
 # ========== SIDEBAR ==========
 with st.sidebar:
+    # --- Profile Image and Name ---
+    st.markdown("""
+    <div style="text-align: center; margin-bottom: 20px;">
+        <img src="https://raw.githubusercontent.com/Deslandes1/Weather-Station-of-Globalinternet.py-June-2026/main/Gesner%20Deslandes.png" 
+             class="profile-img">
+        <h3 class="profile-name">Gesner Deslandes</h3>
+        <p class="profile-title">Engineer-in-Chief</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
     st.markdown("### 📞 Contact")
     st.markdown("""
     <div class="sidebar-contact">
