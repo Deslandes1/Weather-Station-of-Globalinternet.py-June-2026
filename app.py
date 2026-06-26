@@ -39,7 +39,475 @@ st.set_page_config(
     page_icon="🌤️"
 )
 
-# ========== CUSTOM CSS – DARK THEME WITH BRIGHT WEATHER CARDS ==========
+# ========== TRANSLATIONS ==========
+LANGUAGES = {
+    "en": {"name": "English", "code": "en", "gtts": "en"},
+    "fr": {"name": "Français", "code": "fr", "gtts": "fr"},
+    "es": {"name": "Español", "code": "es", "gtts": "es"},
+    "zh": {"name": "中文", "code": "zh", "gtts": "zh"}
+}
+
+T = {
+    "en": {
+        "app_title": "GlobalInternet.py Weather Station",
+        "app_sub": "Real‑time weather monitoring for all 10 departments of Haiti",
+        "live_badge": "● LIVE 24/7",
+        "sidebar_contact": "Contact",
+        "sidebar_email": "Email",
+        "sidebar_phone": "Phone",
+        "sidebar_website": "Website",
+        "sidebar_voice": "AI Voice",
+        "voice_button": "🔊 Read Weather Summary",
+        "voice_playing": "✅ Weather summary played.",
+        "voice_fail": "❌ Voice generation failed. Please ensure gTTS is installed.",
+        "voice_waiting": "No weather data available. Please refresh.",
+        "sidebar_status": "Data Status",
+        "status_live": "Live",
+        "status_cached": "Cached",
+        "status_error": "Error",
+        "last_update": "Last updated: {time}",
+        "sidebar_about": "About",
+        "about_text": """
+        This weather station fetches real‑time data from **Open‑Meteo**,
+        a free weather API that requires no API key.
+        
+        **Data includes:**
+        - Temperature & Feels‑like
+        - Humidity & Precipitation
+        - Wind speed & Pressure
+        - UV Index & Weather conditions
+        
+        Updates every **15 minutes** automatically.
+        """,
+        "refresh_button": "🔄 Refresh Now",
+        "footer_text": "© 2026 GlobalInternet.py Online Software Company",
+        "footer_built": "Built by **Gesner Deslandes** | (509) 4738-5663 | deslandes78@gmail.com",
+        "footer_powered": "🌤️ Data powered by Open-Meteo | Free weather API | No API key required | Updated every 15 minutes",
+        "summary_avg_temp": "Average Temperature",
+        "summary_departments": "Departments",
+        "summary_online": "online",
+        "summary_last_update": "Last Update",
+        "weather_title": "Current Weather by Department",
+        "weather_details": "View Detailed Weather Table",
+        "download_csv": "📥 Download Weather Data (CSV)",
+        "feels_like": "Feels like {temp}°C",
+        "precip": "Precipitation",
+        "humidity": "Humidity",
+        "wind": "Wind",
+        "pressure": "Pressure",
+        "uv": "UV Index",
+        "data_unavailable": "Data unavailable",
+        "error_connection": "Connection error",
+        "weather_clear": "Clear sky",
+        "weather_mainly_clear": "Mainly clear",
+        "weather_partly_cloudy": "Partly cloudy",
+        "weather_overcast": "Overcast",
+        "weather_fog": "Fog",
+        "weather_rime_fog": "Depositing rime fog",
+        "weather_light_drizzle": "Light drizzle",
+        "weather_moderate_drizzle": "Moderate drizzle",
+        "weather_dense_drizzle": "Dense drizzle",
+        "weather_slight_rain": "Slight rain",
+        "weather_moderate_rain": "Moderate rain",
+        "weather_heavy_rain": "Heavy rain",
+        "weather_slight_snow": "Slight snow",
+        "weather_moderate_snow": "Moderate snow",
+        "weather_heavy_snow": "Heavy snow",
+        "weather_slight_showers": "Slight rain showers",
+        "weather_moderate_showers": "Moderate rain showers",
+        "weather_violent_showers": "Violent rain showers",
+        "weather_thunderstorm": "Thunderstorm",
+        "weather_thunderstorm_hail": "Thunderstorm with hail",
+        "weather_thunderstorm_heavy_hail": "Thunderstorm with heavy hail",
+        "voice_script": """
+Welcome to GlobalInternet.py Weather Station. Here is the current weather across Haiti's 10 departments. 
+{details}
+Thank you for using GlobalInternet.py Weather Station.
+""",
+        "voice_detail": "In {city}, it is currently {temp} degrees Celsius with {desc}. "
+    },
+    "fr": {
+        "app_title": "Station Météo GlobalInternet.py",
+        "app_sub": "Surveillance météo en temps réel pour les 10 départements d'Haïti",
+        "live_badge": "● EN DIRECT 24/7",
+        "sidebar_contact": "Contact",
+        "sidebar_email": "Email",
+        "sidebar_phone": "Téléphone",
+        "sidebar_website": "Site web",
+        "sidebar_voice": "Voix IA",
+        "voice_button": "🔊 Lire le résumé météo",
+        "voice_playing": "✅ Résumé météo diffusé.",
+        "voice_fail": "❌ La génération vocale a échoué. Veuillez installer gTTS.",
+        "voice_waiting": "Aucune donnée météo disponible. Veuillez actualiser.",
+        "sidebar_status": "État des données",
+        "status_live": "En direct",
+        "status_cached": "Mis en cache",
+        "status_error": "Erreur",
+        "last_update": "Dernière mise à jour : {time}",
+        "sidebar_about": "À propos",
+        "about_text": """
+        Cette station météo récupère des données en temps réel depuis **Open‑Meteo**,
+        une API météo gratuite ne nécessitant pas de clé API.
+        
+        **Données incluses :**
+        - Température et ressenti
+        - Humidité et précipitations
+        - Vitesse du vent et pression
+        - Indice UV et conditions météo
+        
+        Mise à jour automatique toutes les **15 minutes**.
+        """,
+        "refresh_button": "🔄 Actualiser maintenant",
+        "footer_text": "© 2026 GlobalInternet.py Online Software Company",
+        "footer_built": "Construit par **Gesner Deslandes** | (509) 4738-5663 | deslandes78@gmail.com",
+        "footer_powered": "🌤️ Données fournies par Open-Meteo | API météo gratuite | Aucune clé API requise | Mise à jour toutes les 15 minutes",
+        "summary_avg_temp": "Température moyenne",
+        "summary_departments": "Départements",
+        "summary_online": "en ligne",
+        "summary_last_update": "Dernière mise à jour",
+        "weather_title": "Météo actuelle par département",
+        "weather_details": "Voir le tableau détaillé de la météo",
+        "download_csv": "📥 Télécharger les données météo (CSV)",
+        "feels_like": "Ressenti {temp}°C",
+        "precip": "Précipitations",
+        "humidity": "Humidité",
+        "wind": "Vent",
+        "pressure": "Pression",
+        "uv": "Indice UV",
+        "data_unavailable": "Données indisponibles",
+        "error_connection": "Erreur de connexion",
+        "weather_clear": "Ciel dégagé",
+        "weather_mainly_clear": "Principalement dégagé",
+        "weather_partly_cloudy": "Partiellement nuageux",
+        "weather_overcast": "Couvert",
+        "weather_fog": "Brouillard",
+        "weather_rime_fog": "Brouillard givrant",
+        "weather_light_drizzle": "Bruine légère",
+        "weather_moderate_drizzle": "Bruine modérée",
+        "weather_dense_drizzle": "Bruine dense",
+        "weather_slight_rain": "Pluie légère",
+        "weather_moderate_rain": "Pluie modérée",
+        "weather_heavy_rain": "Pluie forte",
+        "weather_slight_snow": "Neige légère",
+        "weather_moderate_snow": "Neige modérée",
+        "weather_heavy_snow": "Neige forte",
+        "weather_slight_showers": "Averses légères",
+        "weather_moderate_showers": "Averses modérées",
+        "weather_violent_showers": "Averses violentes",
+        "weather_thunderstorm": "Orage",
+        "weather_thunderstorm_hail": "Orage avec grêle",
+        "weather_thunderstorm_heavy_hail": "Orage avec grêle forte",
+        "voice_script": """
+Bienvenue à la station météo GlobalInternet.py. Voici la météo actuelle dans les 10 départements d'Haïti. 
+{details}
+Merci d'utiliser la station météo GlobalInternet.py.
+""",
+        "voice_detail": "À {city}, il fait actuellement {temp} degrés Celsius avec {desc}. "
+    },
+    "es": {
+        "app_title": "Estación Meteorológica GlobalInternet.py",
+        "app_sub": "Monitoreo meteorológico en tiempo real para los 10 departamentos de Haití",
+        "live_badge": "● EN VIVO 24/7",
+        "sidebar_contact": "Contacto",
+        "sidebar_email": "Correo electrónico",
+        "sidebar_phone": "Teléfono",
+        "sidebar_website": "Sitio web",
+        "sidebar_voice": "Voz IA",
+        "voice_button": "🔊 Leer resumen del clima",
+        "voice_playing": "✅ Resumen del clima reproducido.",
+        "voice_fail": "❌ Falló la generación de voz. Asegúrate de instalar gTTS.",
+        "voice_waiting": "No hay datos climáticos disponibles. Actualice.",
+        "sidebar_status": "Estado de los datos",
+        "status_live": "En vivo",
+        "status_cached": "En caché",
+        "status_error": "Error",
+        "last_update": "Última actualización: {time}",
+        "sidebar_about": "Acerca de",
+        "about_text": """
+        Esta estación meteorológica obtiene datos en tiempo real de **Open‑Meteo**,
+        una API climática gratuita que no requiere clave API.
+        
+        **Datos incluidos:**
+        - Temperatura y sensación térmica
+        - Humedad y precipitación
+        - Velocidad del viento y presión
+        - Índice UV y condiciones climáticas
+        
+        Se actualiza automáticamente cada **15 minutos**.
+        """,
+        "refresh_button": "🔄 Actualizar ahora",
+        "footer_text": "© 2026 GlobalInternet.py Online Software Company",
+        "footer_built": "Construido por **Gesner Deslandes** | (509) 4738-5663 | deslandes78@gmail.com",
+        "footer_powered": "🌤️ Datos proporcionados por Open-Meteo | API climática gratuita | No se requiere clave API | Actualizado cada 15 minutos",
+        "summary_avg_temp": "Temperatura promedio",
+        "summary_departments": "Departamentos",
+        "summary_online": "en línea",
+        "summary_last_update": "Última actualización",
+        "weather_title": "Clima actual por departamento",
+        "weather_details": "Ver tabla detallada del clima",
+        "download_csv": "📥 Descargar datos climáticos (CSV)",
+        "feels_like": "Sensación de {temp}°C",
+        "precip": "Precipitación",
+        "humidity": "Humedad",
+        "wind": "Viento",
+        "pressure": "Presión",
+        "uv": "Índice UV",
+        "data_unavailable": "Datos no disponibles",
+        "error_connection": "Error de conexión",
+        "weather_clear": "Cielo despejado",
+        "weather_mainly_clear": "Mayormente despejado",
+        "weather_partly_cloudy": "Parcialmente nublado",
+        "weather_overcast": "Nublado",
+        "weather_fog": "Niebla",
+        "weather_rime_fog": "Niebla escarchada",
+        "weather_light_drizzle": "Llovizna ligera",
+        "weather_moderate_drizzle": "Llovizna moderada",
+        "weather_dense_drizzle": "Llovizna densa",
+        "weather_slight_rain": "Lluvia ligera",
+        "weather_moderate_rain": "Lluvia moderada",
+        "weather_heavy_rain": "Lluvia fuerte",
+        "weather_slight_snow": "Nieve ligera",
+        "weather_moderate_snow": "Nieve moderada",
+        "weather_heavy_snow": "Nieve fuerte",
+        "weather_slight_showers": "Chubascos ligeros",
+        "weather_moderate_showers": "Chubascos moderados",
+        "weather_violent_showers": "Chubascos violentos",
+        "weather_thunderstorm": "Tormenta eléctrica",
+        "weather_thunderstorm_hail": "Tormenta con granizo",
+        "weather_thunderstorm_heavy_hail": "Tormenta con granizo fuerte",
+        "voice_script": """
+Bienvenido a la estación meteorológica de GlobalInternet.py. Aquí está el clima actual en los 10 departamentos de Haití. 
+{details}
+Gracias por usar la estación meteorológica de GlobalInternet.py.
+""",
+        "voice_detail": "En {city}, actualmente hay {temp} grados Celsius con {desc}. "
+    },
+    "zh": {
+        "app_title": "GlobalInternet.py 气象站",
+        "app_sub": "海地 10 个省实时天气监测",
+        "live_badge": "● 24/7 实时运行",
+        "sidebar_contact": "联系方式",
+        "sidebar_email": "电子邮件",
+        "sidebar_phone": "电话",
+        "sidebar_website": "网站",
+        "sidebar_voice": "AI 语音",
+        "voice_button": "🔊 朗读天气摘要",
+        "voice_playing": "✅ 天气摘要已播放。",
+        "voice_fail": "❌ 语音生成失败。请确保已安装 gTTS。",
+        "voice_waiting": "暂无天气数据。请刷新。",
+        "sidebar_status": "数据状态",
+        "status_live": "实时",
+        "status_cached": "缓存",
+        "status_error": "错误",
+        "last_update": "最后更新：{time}",
+        "sidebar_about": "关于",
+        "about_text": """
+        此气象站从 **Open‑Meteo** 获取实时数据，
+        这是一个免费的天气 API，无需 API 密钥。
+        
+        **包含数据：**
+        - 温度及体感温度
+        - 湿度和降水
+        - 风速和气压
+        - 紫外线指数和天气状况
+        
+        每 **15 分钟**自动更新。
+        """,
+        "refresh_button": "🔄 立即刷新",
+        "footer_text": "© 2026 GlobalInternet.py 在线软件公司",
+        "footer_built": "由 **Gesner Deslandes** 构建 | (509) 4738-5663 | deslandes78@gmail.com",
+        "footer_powered": "🌤️ 数据由 Open-Meteo 提供 | 免费天气 API | 无需 API 密钥 | 每 15 分钟更新一次",
+        "summary_avg_temp": "平均温度",
+        "summary_departments": "省份",
+        "summary_online": "在线",
+        "summary_last_update": "最后更新",
+        "weather_title": "各省当前天气",
+        "weather_details": "查看详细天气表格",
+        "download_csv": "📥 下载天气数据 (CSV)",
+        "feels_like": "体感 {temp}°C",
+        "precip": "降水量",
+        "humidity": "湿度",
+        "wind": "风速",
+        "pressure": "气压",
+        "uv": "紫外线指数",
+        "data_unavailable": "数据不可用",
+        "error_connection": "连接错误",
+        "weather_clear": "晴天",
+        "weather_mainly_clear": "晴间多云",
+        "weather_partly_cloudy": "局部多云",
+        "weather_overcast": "阴天",
+        "weather_fog": "雾",
+        "weather_rime_fog": "雾凇",
+        "weather_light_drizzle": "小雨",
+        "weather_moderate_drizzle": "中雨",
+        "weather_dense_drizzle": "大雨",
+        "weather_slight_rain": "小雨",
+        "weather_moderate_rain": "中雨",
+        "weather_heavy_rain": "大雨",
+        "weather_slight_snow": "小雪",
+        "weather_moderate_snow": "中雪",
+        "weather_heavy_snow": "大雪",
+        "weather_slight_showers": "小阵雨",
+        "weather_moderate_showers": "中阵雨",
+        "weather_violent_showers": "强阵雨",
+        "weather_thunderstorm": "雷暴",
+        "weather_thunderstorm_hail": "雷暴伴冰雹",
+        "weather_thunderstorm_heavy_hail": "雷暴伴大冰雹",
+        "voice_script": """
+欢迎使用 GlobalInternet.py 气象站。以下是海地 10 个省的当前天气。
+{details}
+感谢使用 GlobalInternet.py 气象站。
+""",
+        "voice_detail": "在{city}，当前温度为 {temp} 摄氏度，{desc}。"
+    }
+}
+
+# ========== TRANSLATION FUNCTION ==========
+def t(key):
+    """Return translated string for current language"""
+    lang = st.session_state.get("lang", "en")
+    return T[lang].get(key, T["en"].get(key, key))
+
+# ========== WEATHER DESCRIPTION TRANSLATION ==========
+def get_weather_description_translated(code):
+    """Return translated weather description based on current language"""
+    lang = st.session_state.get("lang", "en")
+    desc_key_map = {
+        0: "weather_clear",
+        1: "weather_mainly_clear",
+        2: "weather_partly_cloudy",
+        3: "weather_overcast",
+        45: "weather_fog",
+        48: "weather_rime_fog",
+        51: "weather_light_drizzle",
+        53: "weather_moderate_drizzle",
+        55: "weather_dense_drizzle",
+        61: "weather_slight_rain",
+        63: "weather_moderate_rain",
+        65: "weather_heavy_rain",
+        71: "weather_slight_snow",
+        73: "weather_moderate_snow",
+        75: "weather_heavy_snow",
+        80: "weather_slight_showers",
+        81: "weather_moderate_showers",
+        82: "weather_violent_showers",
+        95: "weather_thunderstorm",
+        96: "weather_thunderstorm_hail",
+        99: "weather_thunderstorm_heavy_hail"
+    }
+    key = desc_key_map.get(code, "weather_clear")
+    return t(key)
+
+# ========== HAITI DEPARTMENTS ==========
+HAITI_DEPARTMENTS = [
+    {"name": "Artibonite", "city": "Gonaïves", "lat": 19.45, "lon": -72.68},
+    {"name": "Centre", "city": "Hinche", "lat": 19.15, "lon": -72.00},
+    {"name": "Grand'Anse", "city": "Jérémie", "lat": 18.65, "lon": -74.12},
+    {"name": "Nippes", "city": "Miragoâne", "lat": 18.45, "lon": -73.10},
+    {"name": "Nord", "city": "Cap-Haïtien", "lat": 19.76, "lon": -72.20},
+    {"name": "Nord-Est", "city": "Fort-Liberté", "lat": 19.67, "lon": -71.84},
+    {"name": "Nord-Ouest", "city": "Port-de-Paix", "lat": 19.95, "lon": -72.83},
+    {"name": "Ouest", "city": "Port-au-Prince", "lat": 18.54, "lon": -72.34},
+    {"name": "Sud-Est", "city": "Jacmel", "lat": 18.23, "lon": -72.54},
+    {"name": "Sud", "city": "Les Cayes", "lat": 18.20, "lon": -73.75},
+]
+
+# ========== WEATHER ICON MAPPING ==========
+def get_weather_icon(weather_code):
+    """Map Open-Meteo weather code to emoji"""
+    icons = {
+        0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
+        45: "🌫️", 48: "🌫️",
+        51: "🌧️", 53: "🌧️", 55: "🌧️",
+        61: "🌧️", 63: "🌧️", 65: "🌧️",
+        71: "❄️", 73: "❄️", 75: "❄️",
+        80: "🌦️", 81: "🌦️", 82: "🌦️",
+        95: "⛈️", 96: "⛈️", 99: "⛈️"
+    }
+    return icons.get(weather_code, "🌤️")
+
+# ========== WEATHER DATA FETCH ==========
+@st.cache_data(ttl=900)  # Cache for 15 minutes
+def fetch_weather_data():
+    """Fetch weather data for all 10 departments from Open-Meteo"""
+    results = []
+    haiti_tz = pytz.timezone('America/Port-au-Prince')
+    now = datetime.now(haiti_tz)
+    
+    for dept in HAITI_DEPARTMENTS:
+        url = f"https://api.open-meteo.com/v1/forecast"
+        params = {
+            "latitude": dept["lat"],
+            "longitude": dept["lon"],
+            "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", 
+                        "precipitation", "weather_code", "wind_speed_10m", 
+                        "pressure_msl", "uv_index"],
+            "timezone": "America/Port-au-Prince",
+            "forecast_days": 1
+        }
+        try:
+            response = requests.get(url, params=params, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                current = data.get("current", {})
+                results.append({
+                    "department": dept["name"],
+                    "city": dept["city"],
+                    "lat": dept["lat"],
+                    "lon": dept["lon"],
+                    "temperature": current.get("temperature_2m", "N/A"),
+                    "feels_like": current.get("apparent_temperature", "N/A"),
+                    "humidity": current.get("relative_humidity_2m", "N/A"),
+                    "precipitation": current.get("precipitation", 0),
+                    "wind_speed": current.get("wind_speed_10m", "N/A"),
+                    "pressure": current.get("pressure_msl", "N/A"),
+                    "uv_index": current.get("uv_index", "N/A"),
+                    "weather_code": current.get("weather_code", 0),
+                    "timestamp": now.strftime("%Y-%m-%d %I:%M:%S %p"),
+                    "status": "success"
+                })
+            else:
+                results.append({
+                    "department": dept["name"],
+                    "city": dept["city"],
+                    "lat": dept["lat"],
+                    "lon": dept["lon"],
+                    "status": "error",
+                    "error": f"HTTP {response.status_code}"
+                })
+        except Exception as e:
+            results.append({
+                "department": dept["name"],
+                "city": dept["city"],
+                "lat": dept["lat"],
+                "lon": dept["lon"],
+                "status": "error",
+                "error": str(e)
+            })
+        time.sleep(0.2)  # Rate limit protection
+    
+    return results, now.strftime("%Y-%m-%d %I:%M:%S %p")
+
+# ========== GENERATE VOICE SCRIPT ==========
+def generate_weather_voice_script(weather_data):
+    """Generate a voice script summarizing the weather in the current language"""
+    if not weather_data:
+        return t("voice_waiting")
+    
+    detail_template = t("voice_detail")
+    details = ""
+    for dept in weather_data:
+        if dept.get("status") == "success":
+            temp = dept.get("temperature", "N/A")
+            code = dept.get("weather_code", 0)
+            desc = get_weather_description_translated(code)
+            city = dept.get("city", "")
+            details += detail_template.format(city=city, temp=temp, desc=desc)
+    
+    script_template = t("voice_script")
+    return script_template.format(details=details)
+
+# ========== CUSTOM CSS ==========
 st.markdown("""
 <style>
     .stApp {
@@ -213,15 +681,6 @@ st.markdown("""
     .summary-box strong {
         color: #00d4ff;
     }
-    .alert-box {
-        background: rgba(255, 193, 7, 0.1);
-        border-left: 4px solid #ffc107;
-        padding: 10px 15px;
-        border-radius: 4px;
-        margin: 10px 0;
-        color: #ffffff;
-    }
-    /* Profile image styling */
     .profile-img {
         width: 120px;
         height: 120px;
@@ -247,128 +706,9 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ========== HAITI DEPARTMENTS ==========
-HAITI_DEPARTMENTS = [
-    {"name": "Artibonite", "city": "Gonaïves", "lat": 19.45, "lon": -72.68},
-    {"name": "Centre", "city": "Hinche", "lat": 19.15, "lon": -72.00},
-    {"name": "Grand'Anse", "city": "Jérémie", "lat": 18.65, "lon": -74.12},
-    {"name": "Nippes", "city": "Miragoâne", "lat": 18.45, "lon": -73.10},
-    {"name": "Nord", "city": "Cap-Haïtien", "lat": 19.76, "lon": -72.20},
-    {"name": "Nord-Est", "city": "Fort-Liberté", "lat": 19.67, "lon": -71.84},
-    {"name": "Nord-Ouest", "city": "Port-de-Paix", "lat": 19.95, "lon": -72.83},
-    {"name": "Ouest", "city": "Port-au-Prince", "lat": 18.54, "lon": -72.34},
-    {"name": "Sud-Est", "city": "Jacmel", "lat": 18.23, "lon": -72.54},
-    {"name": "Sud", "city": "Les Cayes", "lat": 18.20, "lon": -73.75},
-]
-
-# ========== WEATHER ICON MAPPING ==========
-def get_weather_icon(weather_code):
-    """Map Open-Meteo weather code to emoji"""
-    icons = {
-        0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
-        45: "🌫️", 48: "🌫️",
-        51: "🌧️", 53: "🌧️", 55: "🌧️",
-        61: "🌧️", 63: "🌧️", 65: "🌧️",
-        71: "❄️", 73: "❄️", 75: "❄️",
-        80: "🌦️", 81: "🌦️", 82: "🌦️",
-        95: "⛈️", 96: "⛈️", 99: "⛈️"
-    }
-    return icons.get(weather_code, "🌤️")
-
-def get_weather_description(weather_code):
-    """Get weather description from code"""
-    desc = {
-        0: "Clear sky", 1: "Mainly clear", 2: "Partly cloudy", 3: "Overcast",
-        45: "Fog", 48: "Depositing rime fog",
-        51: "Light drizzle", 53: "Moderate drizzle", 55: "Dense drizzle",
-        61: "Slight rain", 63: "Moderate rain", 65: "Heavy rain",
-        71: "Slight snow", 73: "Moderate snow", 75: "Heavy snow",
-        80: "Slight rain showers", 81: "Moderate rain showers", 82: "Violent rain showers",
-        95: "Thunderstorm", 96: "Thunderstorm with hail", 99: "Thunderstorm with heavy hail"
-    }
-    return desc.get(weather_code, "Unknown")
-
-# ========== WEATHER DATA FETCH ==========
-@st.cache_data(ttl=900)  # Cache for 15 minutes
-def fetch_weather_data():
-    """Fetch weather data for all 10 departments from Open-Meteo"""
-    results = []
-    haiti_tz = pytz.timezone('America/Port-au-Prince')
-    now = datetime.now(haiti_tz)
-    
-    for dept in HAITI_DEPARTMENTS:
-        url = f"https://api.open-meteo.com/v1/forecast"
-        params = {
-            "latitude": dept["lat"],
-            "longitude": dept["lon"],
-            "current": ["temperature_2m", "relative_humidity_2m", "apparent_temperature", 
-                        "precipitation", "weather_code", "wind_speed_10m", 
-                        "pressure_msl", "uv_index"],
-            "timezone": "America/Port-au-Prince",
-            "forecast_days": 1
-        }
-        try:
-            response = requests.get(url, params=params, timeout=10)
-            if response.status_code == 200:
-                data = response.json()
-                current = data.get("current", {})
-                results.append({
-                    "department": dept["name"],
-                    "city": dept["city"],
-                    "lat": dept["lat"],
-                    "lon": dept["lon"],
-                    "temperature": current.get("temperature_2m", "N/A"),
-                    "feels_like": current.get("apparent_temperature", "N/A"),
-                    "humidity": current.get("relative_humidity_2m", "N/A"),
-                    "precipitation": current.get("precipitation", 0),
-                    "wind_speed": current.get("wind_speed_10m", "N/A"),
-                    "pressure": current.get("pressure_msl", "N/A"),
-                    "uv_index": current.get("uv_index", "N/A"),
-                    "weather_code": current.get("weather_code", 0),
-                    "timestamp": now.strftime("%Y-%m-%d %I:%M:%S %p"),
-                    "status": "success"
-                })
-            else:
-                results.append({
-                    "department": dept["name"],
-                    "city": dept["city"],
-                    "lat": dept["lat"],
-                    "lon": dept["lon"],
-                    "status": "error",
-                    "error": f"HTTP {response.status_code}"
-                })
-        except Exception as e:
-            results.append({
-                "department": dept["name"],
-                "city": dept["city"],
-                "lat": dept["lat"],
-                "lon": dept["lon"],
-                "status": "error",
-                "error": str(e)
-            })
-        time.sleep(0.2)  # Rate limit protection
-    
-    return results, now.strftime("%Y-%m-%d %I:%M:%S %p")
-
-# ========== GENERATE VOICE SCRIPT ==========
-def generate_weather_voice_script(weather_data):
-    """Generate a voice script summarizing the weather"""
-    if not weather_data:
-        return "No weather data available at this time."
-    
-    script = "Welcome to GlobalInternet.py Weather Station. Here is the current weather across Haiti's 10 departments. "
-    
-    for dept in weather_data:
-        if dept.get("status") == "success":
-            temp = dept.get("temperature", "N/A")
-            desc = get_weather_description(dept.get("weather_code", 0))
-            city = dept.get("city", "")
-            script += f"In {city}, it is currently {temp} degrees Celsius with {desc}. "
-    
-    script += "Thank you for using GlobalInternet.py Weather Station."
-    return script
-
 # ========== SESSION STATE ==========
+if "lang" not in st.session_state:
+    st.session_state.lang = "en"
 if 'weather_data' not in st.session_state:
     st.session_state.weather_data = None
 if 'last_update' not in st.session_state:
@@ -377,17 +717,31 @@ if 'api_status' not in st.session_state:
     st.session_state.api_status = "Initializing"
 
 # ========== HEADER ==========
-st.markdown("""
+st.markdown(f"""
 <div class="main-header">
-    <h1>🌤️ GlobalInternet.py Weather Station</h1>
-    <p>Real‑time weather monitoring for all 10 departments of Haiti</p>
-    <span class="live-badge">● LIVE 24/7</span>
+    <h1>🌤️ {t('app_title')}</h1>
+    <p>{t('app_sub')}</p>
+    <span class="live-badge">{t('live_badge')}</span>
 </div>
 """, unsafe_allow_html=True)
 
 # ========== SIDEBAR ==========
 with st.sidebar:
-    # --- Profile Image and Name ---
+    # Language selection
+    lang_options = {"en": "English", "fr": "Français", "es": "Español", "zh": "中文"}
+    selected_lang = st.selectbox(
+        "🌐 Language",
+        options=list(lang_options.keys()),
+        format_func=lambda x: lang_options[x],
+        index=list(lang_options.keys()).index(st.session_state.lang)
+    )
+    if selected_lang != st.session_state.lang:
+        st.session_state.lang = selected_lang
+        st.rerun()
+    
+    st.markdown("---")
+    
+    # Profile Image and Name
     st.markdown("""
     <div style="text-align: center; margin-bottom: 20px;">
         <img src="https://raw.githubusercontent.com/Deslandes1/Weather-Station-of-Globalinternet.py-June-2026/main/Gesner%20Deslandes.png" 
@@ -399,67 +753,57 @@ with st.sidebar:
     
     st.markdown("---")
     
-    st.markdown("### 📞 Contact")
-    st.markdown("""
+    st.markdown(f"### 📞 {t('sidebar_contact')}")
+    st.markdown(f"""
     <div class="sidebar-contact">
-        <strong>Email:</strong> deslandes78@gmail.com<br>
-        <strong>Phone:</strong> (509) 4738-5663<br>
-        <strong>Website:</strong> <a href="https://globalinternetsitepyabh7v6tnmskxxnuplrdcgk.streamlit.app" style="color:#00d4ff;" target="_blank">globalinternet-py.com</a>
+        <strong>{t('sidebar_email')}:</strong> deslandes78@gmail.com<br>
+        <strong>{t('sidebar_phone')}:</strong> (509) 4738-5663<br>
+        <strong>{t('sidebar_website')}:</strong> <a href="https://globalinternetsitepyabh7v6tnmskxxnuplrdcgk.streamlit.app" style="color:#00d4ff;" target="_blank">globalinternet-py.com</a>
     </div>
     """, unsafe_allow_html=True)
     
     st.markdown("---")
     
-    st.markdown("### 🎤 AI Voice")
-    if st.button("🔊 Read Weather Summary", use_container_width=True):
+    st.markdown(f"### 🎤 {t('sidebar_voice')}")
+    if st.button(t('voice_button'), use_container_width=True):
         if st.session_state.weather_data:
             script = generate_weather_voice_script(st.session_state.weather_data)
             with st.spinner("🎤 Generating voice..."):
-                audio_bytes = generate_audio(script, "en")
+                lang_code = LANGUAGES[st.session_state.lang]["gtts"]
+                audio_bytes = generate_audio(script, lang_code)
                 if audio_bytes:
                     st.audio(audio_bytes, format="audio/mp3")
-                    st.success("✅ Weather summary played.")
+                    st.success(t('voice_playing'))
                 else:
-                    st.error("❌ Voice generation failed. Please ensure gTTS is installed.")
+                    st.error(t('voice_fail'))
         else:
-            st.warning("No weather data available. Please refresh.")
+            st.warning(t('voice_waiting'))
     
     st.markdown("---")
     
-    st.markdown("### 🔄 Data Status")
+    st.markdown(f"### 🔄 {t('sidebar_status')}")
     status = st.session_state.api_status
     if "Live" in status:
         badge_class = "status-live"
-        status_text = "Live"
+        status_text = t('status_live')
     elif "Cached" in status:
         badge_class = "status-cached"
-        status_text = "Cached"
+        status_text = t('status_cached')
     else:
         badge_class = "status-error"
-        status_text = "Error"
+        status_text = t('status_error')
     st.markdown(f'<span class="status-badge {badge_class}">{status_text}</span>', unsafe_allow_html=True)
     if st.session_state.last_update:
-        st.caption(f"Last updated: {st.session_state.last_update}")
+        st.caption(t('last_update').format(time=st.session_state.last_update))
     
     st.markdown("---")
     
-    st.markdown("### 📊 About")
-    st.markdown("""
-    This weather station fetches real‑time data from **Open‑Meteo**,
-    a free weather API that requires no API key.
-    
-    **Data includes:**
-    - Temperature & Feels‑like
-    - Humidity & Precipitation
-    - Wind speed & Pressure
-    - UV Index & Weather conditions
-    
-    Updates every **15 minutes** automatically.
-    """)
+    st.markdown(f"### 📊 {t('sidebar_about')}")
+    st.markdown(t('about_text'))
     
     st.markdown("---")
     
-    if st.button("🔄 Refresh Now", use_container_width=True):
+    if st.button(t('refresh_button'), use_container_width=True):
         st.cache_data.clear()
         st.rerun()
     
@@ -483,7 +827,6 @@ weather_data = st.session_state.weather_data
 
 # ========== SUMMARY SECTION ==========
 if weather_data:
-    # Count successful fetches
     success_count = sum(1 for d in weather_data if d.get("status") == "success")
     error_count = len(weather_data) - success_count
     
@@ -491,7 +834,7 @@ if weather_data:
     with col_summary1:
         st.markdown(f"""
         <div class="summary-box">
-            <strong>🌡️ Average Temperature</strong><br>
+            <strong>🌡️ {t('summary_avg_temp')}</strong><br>
             <span style="font-size:2rem; color:#00d4ff;">
                 {sum(d.get("temperature", 0) for d in weather_data if d.get("status") == "success") / max(1, success_count):.1f}°C
             </span>
@@ -500,17 +843,17 @@ if weather_data:
     with col_summary2:
         st.markdown(f"""
         <div class="summary-box">
-            <strong>📊 Departments</strong><br>
+            <strong>📊 {t('summary_departments')}</strong><br>
             <span style="font-size:2rem; color:#00d4ff;">
                 {success_count}/{len(HAITI_DEPARTMENTS)}
             </span>
-            <span style="color:#8899bb;">online</span>
+            <span style="color:#8899bb;">{t('summary_online')}</span>
         </div>
         """, unsafe_allow_html=True)
     with col_summary3:
         st.markdown(f"""
         <div class="summary-box">
-            <strong>🕒 Last Update</strong><br>
+            <strong>🕒 {t('summary_last_update')}</strong><br>
             <span style="font-size:1.2rem; color:#ffffff;">
                 {st.session_state.last_update}
             </span>
@@ -520,9 +863,8 @@ if weather_data:
     st.markdown("---")
 
 # ========== WEATHER CARDS – 2 COLUMNS ==========
-st.markdown("### 📍 Current Weather by Department")
+st.markdown(f"### 📍 {t('weather_title')}")
 
-# Split into rows of 2
 for i in range(0, len(weather_data), 2):
     cols = st.columns(2)
     for j, col in enumerate(cols):
@@ -540,7 +882,7 @@ for i in range(0, len(weather_data), 2):
                     uv = dept.get("uv_index", "N/A")
                     code = dept.get("weather_code", 0)
                     icon = get_weather_icon(code)
-                    desc = get_weather_description(code)
+                    desc = get_weather_description_translated(code)
                     city = dept.get("city", "")
                     dept_name = dept.get("department", "")
                     
@@ -551,13 +893,13 @@ for i in range(0, len(weather_data), 2):
                         <div class="weather-icon">{icon}</div>
                         <div class="temp">{temp}°C</div>
                         <div style="color:#8899bb; font-size:0.9rem;">{desc}</div>
-                        <div style="color:#aabbdd; font-size:0.9rem;">Feels like {feels}°C</div>
+                        <div style="color:#aabbdd; font-size:0.9rem;">{t('feels_like').format(temp=feels)}</div>
                         <div class="details">
-                            <span>💧 {humidity}%</span>
-                            <span>🌧️ {precip} mm</span>
-                            <span>💨 {wind} km/h</span>
-                            <span>📊 {pressure} hPa</span>
-                            <span>☀️ UV {uv}</span>
+                            <span>💧 {t('humidity')}: {humidity}%</span>
+                            <span>🌧️ {t('precip')}: {precip} mm</span>
+                            <span>💨 {t('wind')}: {wind} km/h</span>
+                            <span>📊 {t('pressure')}: {pressure} hPa</span>
+                            <span>☀️ {t('uv')}: {uv}</span>
                         </div>
                     </div>
                     """, unsafe_allow_html=True)
@@ -567,37 +909,36 @@ for i in range(0, len(weather_data), 2):
                         <div class="city">{dept.get('city', 'Unknown')}</div>
                         <div class="dept">{dept.get('department', 'Unknown')}</div>
                         <div style="font-size:3rem; margin:10px 0;">⚠️</div>
-                        <div style="color:#e74c3c;">Data unavailable</div>
-                        <div style="color:#8899bb; font-size:0.8rem;">{dept.get('error', 'Connection error')}</div>
+                        <div style="color:#e74c3c;">{t('data_unavailable')}</div>
+                        <div style="color:#8899bb; font-size:0.8rem;">{t('error_connection')}</div>
                     </div>
                     """, unsafe_allow_html=True)
 
 # ========== DETAILED TABLE ==========
-with st.expander("📊 View Detailed Weather Table", expanded=False):
+with st.expander(f"📊 {t('weather_details')}", expanded=False):
     if weather_data:
         table_data = []
         for d in weather_data:
             if d.get("status") == "success":
                 table_data.append({
-                    "Department": d.get("department", ""),
+                    t('summary_departments'): d.get("department", ""),
                     "City": d.get("city", ""),
                     "Temperature (°C)": d.get("temperature", "N/A"),
                     "Feels Like (°C)": d.get("feels_like", "N/A"),
-                    "Humidity (%)": d.get("humidity", "N/A"),
-                    "Precipitation (mm)": d.get("precipitation", 0),
-                    "Wind (km/h)": d.get("wind_speed", "N/A"),
-                    "Pressure (hPa)": d.get("pressure", "N/A"),
-                    "UV Index": d.get("uv_index", "N/A"),
-                    "Conditions": get_weather_description(d.get("weather_code", 0))
+                    t('humidity') + " (%)": d.get("humidity", "N/A"),
+                    t('precip') + " (mm)": d.get("precipitation", 0),
+                    t('wind') + " (km/h)": d.get("wind_speed", "N/A"),
+                    t('pressure') + " (hPa)": d.get("pressure", "N/A"),
+                    t('uv'): d.get("uv_index", "N/A"),
+                    "Conditions": get_weather_description_translated(d.get("weather_code", 0))
                 })
         if table_data:
             df = pd.DataFrame(table_data)
             st.dataframe(df, use_container_width=True, height=400)
             
-            # Download CSV
             csv = df.to_csv(index=False)
             st.download_button(
-                label="📥 Download Weather Data (CSV)",
+                label=t('download_csv'),
                 data=csv,
                 file_name=f"haiti_weather_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
                 mime="text/csv",
@@ -605,7 +946,6 @@ with st.expander("📊 View Detailed Weather Table", expanded=False):
             )
 
 # ========== AUTO-REFRESH ==========
-# Auto-refresh every 15 minutes (900 seconds)
 if 'next_refresh' not in st.session_state:
     st.session_state.next_refresh = time.time() + 900
 
@@ -617,12 +957,10 @@ if time.time() > st.session_state.next_refresh:
 # ========== FOOTER ==========
 st.markdown(f"""
 <div class="footer">
-    <p>© 2026 GlobalInternet.py Online Software Company</p>
-    <p>Built by <strong>Gesner Deslandes</strong> | (509) 4738-5663 | deslandes78@gmail.com</p>
+    <p>{t('footer_text')}</p>
+    <p>{t('footer_built')}</p>
     <p style="font-size:0.8rem; color:#445566;">
-        🌤️ Data powered by <a href="https://open-meteo.com" style="color:#00d4ff;" target="_blank">Open-Meteo</a>
-        | Free weather API | No API key required
-        | Updated every 15 minutes
+        {t('footer_powered')}
     </p>
 </div>
 """, unsafe_allow_html=True)
